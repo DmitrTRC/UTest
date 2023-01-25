@@ -7,7 +7,7 @@ template<class T>
 std::ostream &operator<<(std::ostream &os, const std::vector<T> &s) {
   os << "[ ";
   for (const auto &item : s) {
-    os << s << " ";
+    os << item << " ";
   }
 
   return os << "]";
@@ -48,13 +48,13 @@ std::string Concat(const std::string &a, const std::string &b) {
 
 void Test_Add() {
   AssertEqual(Add(2, 5), 7, "Add 2 + 5");
-  AssertEqual(Add(3, 4), 8, "Line : 24");
-  AssertEqual(Add(-1, -2), -3, "Line 25");
+  AssertEqual(Add(3, 4), 8, "Line : 51");
+  AssertEqual(Add(-1, -2), -3, "Line 52");
 
 }
 
 void Test_div() {
-  AssertEqual(Div(8.999, 3.0), 3, " Line 41");
+  AssertEqual(Div(8.999, 3.0), 3, " Line 57");
 }
 
 int main() {
@@ -70,11 +70,11 @@ int main() {
 
   //Test_Add();
 //  Test_div();
-  AssertEqual(Concat("Hello ", "world"), "Hello world", "Line 55 ");
+  AssertEqual(Concat("Hello ", "world"), "Hello world", "Line 73 ");
 
   AssertEqual(a, b, "Compare vectors a & b ");
   std::cout << "a = b Passed " << std::endl;
-  AssertEqual(a, c, "Line 73");
+  AssertEqual(a, c, "Line 77");
   std::cout << "a = c Passed " << std::endl;
 
   return 0;
