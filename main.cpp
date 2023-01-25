@@ -61,7 +61,7 @@ int main() {
 
   std::vector<int> a = {1, 2, 3, 4, 5};
   std::vector<int> b = {1, 2, 3, 4, 5};
-  std::vector<int> c  = {1, 2};
+  std::vector<int> c = {1, 2};
 
   Assert(Add(2, 5) == 7, "Test 2 + 5");
   std::cout << " 2 + 5  = 7 Passed!" << std::endl;
@@ -76,6 +76,9 @@ int main() {
   std::cout << "a = b Passed " << std::endl;
   AssertEqual(a, c, "Line 77");
   std::cout << "a = c Passed " << std::endl;
+
+  AssertEqual(a, std::vector({1, 2, 3, 4, 5}), "Line 80");
+  std::cout << "a = {1,2,3,4,5} Passed " << std::endl;
 
   return 0;
 
