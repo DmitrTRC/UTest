@@ -37,6 +37,14 @@ void Test_Add() {
   AssertEqual(Add(-1, -2), -3, "Line 52");
 
 }
+void Test_Set() {
+  std::set<int> a = {1, 2, 3, 4, 5};
+  std::set<int> b = {7, 8, 9, 2, 1};
+
+  AssertEqual(a.size(), b.size(), "The sizes are equal!");
+  AssertEqual(a, b, "this sets are not equal");
+
+}
 
 void Test_div() {
   AssertEqual(Div(8.999, 3.0), 3, " Line 57");
@@ -79,15 +87,6 @@ void Test_Dict2() {
 
 }
 
-//TODO: Implement std::set types for AssertEqual
-void Test_Set() {
-  std::set<int> s1 = {1, 4, 6, 8};
-  std::set<int> s2 = {10, 2, 4, 5, 7};
-
-//  AssertEqual(s1.size(), 4, "The size of set is 4");
-//  AssertEqual(s1, s2, "This set are not Equal");
-
-}
 
 //TODO : Implement support for custom type Car
 void Test_Car() {

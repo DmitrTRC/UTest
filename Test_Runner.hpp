@@ -7,11 +7,21 @@
 
 #include <iostream>
 #include <map>
+#include <set>
 #include <sstream>
 #include <vector>
 
 namespace UTest {
 
+template<class T>
+std::ostream &operator<<(std::ostream &os, const std::set<T> &s) {
+  os << "{ ";
+  for (const auto &item : s) {
+    os << item << " ";
+  }
+
+  return os << "}";
+}
 
 // Override the << operator for std::vector
 template<class T>
@@ -82,7 +92,6 @@ void Assert(bool expression, const std::string &hint) {
   AssertEqual(expression, true, hint);
 
 }
-
 
 }
 
