@@ -1,3 +1,5 @@
+#include "Test_Runner.hpp"
+
 #include <exception>
 #include <iostream>
 #include <sstream>
@@ -5,47 +7,17 @@
 #include <map>
 #include <set>
 
-template<class T>
-std::ostream &operator<<(std::ostream &os, const std::vector<T> &s) {
-  os << "[ ";
-  for (const auto &item : s) {
-    os << item << " ";
-  }
+using namespace UTest;
 
-  return os << "]";
-}
+void Run_All_Tests();
 
-//Override the << operator for map
-template<class K, class V>
-std::ostream &operator<<(std::ostream &os, const std::map<K, V> map_object) {
-  os << "{" << std::endl;
+struct Car {
+  std::string Model;
+  std::string Color;
+  int Year{1980};
+  int Power{0};
 
-  for (const auto &[key, value] : map_object) {
-    std::cout << key << " : " << value << std::endl;
-  }
-
-  return os << "}";
-}
-
-template<class T, class U>
-void AssertEqual(const T &lhs, const U &rhs, const std::string &hint) {
-
-  if (lhs != rhs) {
-
-    std::ostringstream os;
-
-    os << "Assertion failed: " << lhs << " != " << rhs << " Hint : " << hint;
-
-    throw std::runtime_error(os.str());
-
-  }
-}
-
-void Assert(bool expression, const std::string &hint) {
-
-  AssertEqual(expression, true, hint);
-
-}
+};
 
 int Add(int a, int b) {
   return a + b;
@@ -55,9 +27,11 @@ double Div(double a, double b) {
   return a / b;
 }
 
-std::string Concat(const std::string &a, const std::string &b) {
+int main() {
+  Run_All_Tests();
 
-  return a + b;
+  return 0;
+
 }
 
 void Test_Add() {
@@ -108,7 +82,7 @@ void Test_Dict2() {
 
 }
 
-//TODO: Implement set types for AssertEqual
+//TODO: Implement std::set types for AssertEqual
 void Test_Set() {
   std::set<int> s1 = {1, 4, 6, 8};
   std::set<int> s2 = {10, 2, 4, 5, 7};
@@ -118,34 +92,35 @@ void Test_Set() {
 
 }
 
-int main() {
+//TODO : Implement support for custom type Car
+void Test_Car() {
 
-//  std::vector<int> a = {1, 2, 3, 4, 5};
-//  std::vector<int> b = {1, 2, 3, 4, 5};
-//  std::vector<int> c = {1, 2};
-//
-//  Assert(Add(2, 5) == 7, "Test 2 + 5");
-//  std::cout << " 2 + 5  = 7 Passed!" << std::endl;
-//
+  Car c1 = {
+      "BMW",
+      "Blue",
+      2000,
+      286
+  };
 
+  Car c2 = {
+      "Audi",
+      "Black",
+      2020,
+      380
+  };
 
-  //Test_Add();
-//  Test_div();
-//  AssertEqual(Concat("Hello ", "world"), "Hello world", "Line 73 ");
-//
-//  AssertEqual(a, b, "Compare vectors a & b ");
-//  std::cout << "a = b Passed " << std::endl;
-//  AssertEqual(a, c, "Line 77");
-//  std::cout << "a = c Passed " << std::endl;
-//
-//  AssertEqual(a, std::vector({1, 2, 3, 4, 5}), "Line 80");
-//  std::cout << "a = {1,2,3,4,5} Passed " << std::endl;
+//  AssertEqual(c1, c2, "This id the difference cars!");
 
-//  Test_Dict();
+}
 
-  Test_Dict2();
-  std::cout << "Dict Test Passed" << std::endl;
+void Run_All_Tests() {
+  TestRunner tr;
+  tr.RunTest(Test_Add, "Test_Add");
+  tr.RunTest(Test_div, "Test_div");
+  tr.RunTest(Test_Dict, "Test_Dict");
+  tr.RunTest(Test_Dict2, "Test_Dict2");
+  tr.RunTest(Test_Set, "Test_Set");
+  tr.RunTest(Test_Car, "Test_Car");
 
-  return 0;
 
 }

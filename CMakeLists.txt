@@ -3,4 +3,5 @@ project(UTest)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(UTest main.cpp)
+
+add_executable(UTest main.cpp Test_Runner.hpp)
