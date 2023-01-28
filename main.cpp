@@ -1,11 +1,8 @@
 #include "Test_Runner.hpp"
 
-#include <exception>
-#include <iostream>
-#include <sstream>
-#include <vector>
 #include <map>
 #include <set>
+#include <vector>
 
 using namespace UTest;
 
@@ -121,6 +118,5 @@ void Run_All_Tests() {
   tr.RunTest(Test_Dict2, "Test_Dict2");
   tr.RunTest(Test_Set, "Test_Set");
   tr.RunTest(Test_Car, "Test_Car");
-
 
 }
