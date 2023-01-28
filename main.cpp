@@ -26,7 +26,7 @@ double Div(double a, double b) {
 
 int main() {
   Run_All_Tests();
-
+  std::cout << "Finished! " << std::endl;
   return 0;
 
 }
