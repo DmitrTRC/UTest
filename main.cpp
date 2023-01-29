@@ -14,6 +14,11 @@ struct Car {
   int Year{1980};
   int Power{0};
 
+  bool operator == (const Car& rhs) const;
+};
+
+  bool Car::operator == (const Car& rhs) const {
+  return Year == rhs.Year and Power == rhs.Power;
 };
 
 int Add(int a, int b) {
