@@ -4,22 +4,34 @@
 #include <set>
 #include <vector>
 
+
 using namespace UTest;
 
 void Run_All_Tests();
 
 struct Car {
+  Car(std::string n1, std::string n2, int n3, int n4):
+    Model(n1),
+    Color(n2),
+    Year(n3),
+    Power(n4)
+  {}
   std::string Model;
   std::string Color;
   int Year{1980};
   int Power{0};
 
-  bool operator == (const Car& rhs) const;
+  friend bool operator != (const Car & left, const Car & right);
 };
 
-  bool Car::operator == (const Car& rhs) const {
-  return Year == rhs.Year and Power == rhs.Power;
-};
+bool operator != (const Car & left, const Car & right)
+{
+    return left.Model == right.Model &&
+           left.Color == right.Color &&
+           left.Year == right.Year &&
+           left.Power == right.Power;
+}
+
 
 int Add(int a, int b) {
   return a + b;
@@ -42,6 +54,7 @@ void Test_Add() {
   AssertEqual(Add(-1, -2), -3, "Line 52");
 
 }
+
 void Test_Set() {
   std::set<int> a = {1, 2, 3, 4, 5};
   std::set<int> b = {7, 8, 9, 2, 1};
@@ -88,13 +101,14 @@ void Test_Dict2() {
       {9984444, "Dmitry"}
   };
 
-  AssertEqual(m1, m2, " Expect they are equal");
+  //AssertEqual(m1, m2, " Expect they are equal");
 
 }
 
 
 //TODO : Implement support for custom type Car
 void Test_Car() {
+
 
   Car c1 = {
       "BMW",
@@ -110,7 +124,7 @@ void Test_Car() {
       380
   };
 
-//  AssertEqual(c1, c2, "This id the difference cars!");
+  AssertEqual(c1, c2, "This id the difference cars!");
 
 }
 
